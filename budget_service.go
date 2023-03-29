@@ -25,7 +25,7 @@ func (s BudgetService) Query(start, end string) int {
 	}
 	budgetRepo := BudgetRepo{}
 	budgets := budgetRepo.GetAll()
-	keys := s.getKeys(startDate, endDate)
+	keys := s.getYearMonthsBetweenPeriod(startDate, endDate)
 	var searchResult []*Budget
 	for _, budget := range budgets {
 		for _, key := range keys {
@@ -66,7 +66,7 @@ func (s BudgetService) Query(start, end string) int {
 	return totalBudget
 }
 
-func (s *BudgetService) getKeys(startDate, endDate time.Time) []string {
+func (s *BudgetService) getYearMonthsBetweenPeriod(startDate, endDate time.Time) []string {
 	startDate = time.Date(startDate.Year(), startDate.Month(), 1, 0, 0, 0, 0, time.UTC)
 	endDate = time.Date(endDate.Year(), endDate.Month(), 1, 0, 0, 0, 0, time.UTC)
 
