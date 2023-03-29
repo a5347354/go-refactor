@@ -8,12 +8,12 @@ import (
 func TestBudgetService(t *testing.T) {
 	budgetService := BudgetService{}
 
-	t.Run("invalid date", func(t *testing.T) {
+	t.Run("should return 0 when invalid date", func(t *testing.T) {
 		result := budgetService.Query("20230302", "20230301")
 		assert.Equal(t, 0, result)
 	})
 
-	t.Run("budget data is empty", func(t *testing.T) {
+	t.Run("should return 0 when budget data is empty", func(t *testing.T) {
 		result := budgetService.Query("20230401", "20230402")
 		assert.Equal(t, 0, result)
 	})
